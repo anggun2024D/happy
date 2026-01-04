@@ -1,5 +1,5 @@
 // Konfigurasi tanggal spesial
-const SPECIAL_DATE = 'Jan 04, 2026 10:11:00';
+const SPECIAL_DATE = 'Jan 04, 2026 21:08:00';
 
 // Data untuk photo booth
 const photoData = [
@@ -122,8 +122,11 @@ async function init() {
         // Setup event listeners
         setupEventListeners();
         
-        // Preload images
-        await preloadImages();
+        // Preload images dan audio
+        await Promise.all([
+            preloadImages(),
+            preloadAudio()
+        ]);
         
         // Setup canvas systems
         setupCanvasSystems();
@@ -140,6 +143,33 @@ async function init() {
         console.error('❌ Error inisialisasi:', error);
         showToast('Terjadi kesalahan saat memuat. Silakan refresh halaman.', 'error');
     }
+}
+
+// Fungsi baru untuk preload audio
+async function preloadAudio() {
+    return new Promise((resolve, reject) => {
+        if (!elements.bgMusic) {
+            resolve();
+            return;
+        }
+        
+        console.log('Preloading audio...');
+        
+        elements.bgMusic.addEventListener('canplaythrough', () => {
+            console.log('✅ Audio siap diputar');
+            resolve();
+        }, { once: true });
+        
+        elements.bgMusic.addEventListener('error', (e) => {
+            console.error('❌ Audio load error:', e);
+            console.error('Audio error details:', elements.bgMusic.error);
+            showToast('File musik tidak ditemukan. Pastikan file "audio/background-music.mp3" ada.', 'error');
+            resolve(); // Jangan reject, biarkan app tetap jalan
+        });
+        
+        // Load audio
+        elements.bgMusic.load();
+    });
 }
 
 // ========== DOM ELEMENTS SETUP ==========
@@ -1182,27 +1212,87 @@ function createFallingStars() {
 function toggleMusic() {
     if (!elements.bgMusic) return;
     
+    // Cek jika audio sudah dimuat
+    if (elements.bgMusic.readyState < 3) {
+        console.log('Audio sedang loading...');
+        showToast('Memuat musik...', 'info');
+        
+        // Coba load manual
+        elements.bgMusic.load();
+        
+        // Coba play setelah load
+        elements.bgMusic.oncanplaythrough = function() {
+            playAudio();
+        };
+        
+        // Timeout fallback
+        setTimeout(() => {
+            if (elements.bgMusic.readyState >= 3) {
+                playAudio();
+            } else {
+                showToast('Gagal memuat musik. Pastikan file audio ada.', 'error');
+                console.error('Audio gagal load:', elements.bgMusic.error);
+            }
+        }, 2000);
+        
+        return;
+    }
+    
+    // Jika sudah dimuat, toggle play/pause
     if (appState.musicPlaying) {
-        elements.bgMusic.pause();
-        appState.musicPlaying = false;
-        updateMusicIcons(false);
+        pauseAudio();
     } else {
-        elements.bgMusic.volume = 0.3;
-        elements.bgMusic.play().catch(e => {
-            console.log('Autoplay diblokir:', e);
-            showToast('Autoplay musik diblokir. Silakan tekan tombol speaker untuk memutar musik.', 'warning');
-        });
+        playAudio();
+    }
+}
+
+function playAudio() {
+    if (!elements.bgMusic) return;
+    
+    elements.bgMusic.volume = 0.3;
+    elements.bgMusic.play().then(() => {
         appState.musicPlaying = true;
         updateMusicIcons(true);
-    }
+        console.log('Audio playing from local file');
+    }).catch(e => {
+        console.error('Audio play failed:', e);
+        
+        // Fallback strategies
+        if (e.name === 'NotAllowedError') {
+            showToast('Autoplay diblokir. Tekan tombol speaker untuk memutar.', 'warning');
+            
+            // User interaction required
+            document.addEventListener('click', function playOnClick() {
+                elements.bgMusic.play().then(() => {
+                    appState.musicPlaying = true;
+                    updateMusicIcons(true);
+                    document.removeEventListener('click', playOnClick);
+                }).catch(err => {
+                    console.log('Still blocked:', err);
+                });
+            }, { once: true });
+        } else {
+            showToast('Gagal memutar musik. Cek file audio.', 'error');
+        }
+    });
+}
+
+function pauseAudio() {
+    if (!elements.bgMusic) return;
+    
+    elements.bgMusic.pause();
+    appState.musicPlaying = false;
+    updateMusicIcons(false);
 }
 
 function updateMusicIcons(playing) {
     const icon = playing ? 'fa-volume-up' : 'fa-volume-mute';
+    const text = playing ? 'Matikan Musik' : 'Nyalakan Musik';
     const musicButtons = document.querySelectorAll('.music-btn i');
     
     musicButtons.forEach(btn => {
         btn.className = `fas ${icon}`;
+        btn.parentElement.title = text;
     });
     
     // Update button classes
@@ -1495,15 +1585,20 @@ function handleResize() {
 
 function handleVisibilityChange() {
     if (document.hidden) {
+        // Jika tab tidak aktif, pause audio
         if (appState.musicPlaying && elements.bgMusic) {
             elements.bgMusic.pause();
+            // Jangan update state agar bisa resume nanti
         }
         if (appState.videoPlaying && elements.birthdayVideo) {
             elements.birthdayVideo.pause();
         }
     } else {
+        // Jika tab aktif kembali, resume audio
         if (appState.musicPlaying && elements.bgMusic) {
-            elements.bgMusic.play().catch(e => console.log('Autoplay blocked'));
+            elements.bgMusic.play().catch(e => {
+                console.log('Audio resume blocked:', e);
+            });
         }
     }
 }
