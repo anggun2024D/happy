@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Dad Moment - Untuk Ayah Tersayang</title>
+    <meta name="description" content="Hadiah digital spesial untuk ayah tersayang dengan foto, video, dan pesan penuh cinta">
+    <meta name="theme-color" content="#8B0F0F">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Baloo+2:wght@400;500;600;700&family=Nunito:wght@300;400;500;600;700&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="apple-touch-icon" href="https://img.icons8.com/color/96/000000/father.png">
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Background Canvas -->
+    <canvas id="backgroundCanvas"></canvas>
+    <canvas id="confettiCanvas"></canvas>
+
+    <!-- 0️⃣ LAYAR COUNTDOWN -->
+    <div id="countdownPage" class="page active">
+        <div class="countdown-container">
+            <div class="music-controls">
+                <button id="musicToggleCountdown" class="music-btn">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+            </div>
+            
+            <h1 class="countdown-title">Menuju Hari Spesial Ayah</h1>
+            <div class="countdown-box">
+                <ul class="countdown-list">
+                    <li><span id="day">0</span><span class="label">Hari</span></li>
+                    <li><span id="hour">0</span><span class="label">Jam</span></li>
+                    <li><span id="minute">0</span><span class="label">Menit</span></li>
+                    <li><span id="second">0</span><span class="label">Detik</span></li>
+                </ul>
+                <div class="countdown-message">
+                    <p><i class="fas fa-heart"></i> Persiapan kejutan spesial untuk Ayah tersayang <i class="fas fa-heart"></i></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 1️⃣ LAYAR PEMBUKA - KOTAK HADIAH -->
+    <div id="openingPage" class="page">
+        <div class="surprise-container">
+            <!-- Header -->
+            <div class="music-controls">
+                <button id="musicToggle" class="music-btn">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+            </div>
+
+            <!-- Kotak Hadiah -->
+            <div class="gift-box-container" id="giftBox">
+                <!-- Bows (Pita atas) -->
+                <div class="gift-bow">
+                    <div class="bow-loop left-loop"></div>
+                    <div class="bow-center"></div>
+                    <div class="bow-loop right-loop"></div>
+                </div>
+
+                <!-- Tutup Kotak -->
+                <div class="gift-lid"></div>
+
+                <!-- Badan Kotak -->
+                <div class="gift-body"></div>
+
+                <!-- Pita -->
+                <div class="gift-ribbon-vertical"></div>
+                <div class="gift-ribbon-horizontal"></div>
+
+                <!-- Efek Cahaya -->
+                <div class="gift-glow"></div>
+            </div>
+            
+            <!-- Bayangan -->
+            <div class="gift-shadow"></div>
+
+            <!-- Teks -->
+            <div class="surprise-text">
+                <h1 class="surprise-title">Ada hadiah kecil buat Ayah</h1>
+                <p class="hint-text">"Sentuh kotak hadiah untuk membuka 😊"</p>
+            </div>
+
+            <!-- Footer -->
+            <div class="opening-footer">
+                <p><i class="fas fa-heart"></i> Happy Dad Moment - Dibuat khusus untuk Ayah <i class="fas fa-heart"></i></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2️⃣ SURAT -->
+    <div id="letterPage" class="page">
+        <div class="letter-container">
+            <!-- Kontrol Musik -->
+            <div class="letter-controls">
+                <button id="backToOpening" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Kembali</span>
+                </button>
+                <button id="musicToggleLetter" class="music-btn">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+            </div>
+
+            <!-- Amplop -->
+            <div class="envelope">
+                <div class="envelope-flap"></div>
+                <div class="envelope-body">
+                    <div class="envelope-seal">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                </div>
+                
+                <!-- Kertas Surat -->
+                <div class="letter-paper" id="letter">
+                    <div class="letter-content">
+                        <!-- Kepala Surat -->
+                        <div class="letter-header">
+                            <div class="letter-date">
+                                <i class="far fa-calendar"></i>
+                                <span>Hari Spesial</span>
+                            </div>
+                            <div class="letter-stamp">
+                                <span>FOR DAD</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Isi Surat -->
+                        <div class="letter-body">
+                            <div id="typewriter" class="handwriting-text"></div>
+                        </div>
+                        
+                        <!-- Tanda Tangan -->
+                        <div class="letter-signature">
+                            <div class="signature-line"></div>
+                            <div class="signature-text">
+                                <i class="fas fa-heart"></i>
+                                Dari anakmu yang selalu sayang
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Efek Tinta Pena -->
+                    <div class="ink-blot ink-blot-1"></div>
+                    <div class="ink-blot ink-blot-2"></div>
+                </div>
+            </div>
+
+            <!-- Tombol Lanjut -->
+            <button id="nextToTransition" class="next-section-btn">
+                <span>Lanjut</span>
+                <i class="fas fa-camera"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- 3️⃣ TRANSISI KE PHOTOBOOTH -->
+    <div id="transitionPage" class="page">
+        <div class="transition-container">
+            <!-- Kontrol -->
+            <div class="letter-controls">
+                <button id="backToLetter" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <button id="musicToggleTransition" class="music-btn">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+            </div>
+
+            <!-- Kotak Hadiah Terbuka -->
+            <div class="gift-box-container opened">
+                <!-- Bows (Pita atas) -->
+                <div class="gift-bow">
+                    <div class="bow-loop left-loop"></div>
+                    <div class="bow-center"></div>
+                    <div class="bow-loop right-loop"></div>
+                </div>
+
+                <!-- Tutup Kotak (terbuka) -->
+                <div class="gift-lid opened-lid"></div>
+
+                <!-- Badan Kotak -->
+                <div class="gift-body"></div>
+
+                <!-- Pita -->
+                <div class="gift-ribbon-vertical"></div>
+                <div class="gift-ribbon-horizontal"></div>
+
+                <!-- Efek Cahaya -->
+                <div class="gift-glow"></div>
+            </div>
+            
+            <!-- Bayangan -->
+            <div class="gift-shadow"></div>
+
+            <!-- Teks -->
+            <div class="transition-text">
+                <h1 class="transition-title">Hadiahnya sudah terbuka!</h1>
+                <p class="transition-subtitle">Sekarang bagian serunya… Ayo buka photo booth kita 🤳</p>
+            </div>
+
+            <!-- Tombol -->
+            <button id="openPhotoboothBtn" class="transition-btn">
+                <span>Buka Photobooth</span>
+                <i class="fas fa-camera"></i>
+            </button>
+
+            <!-- Ikon Dad -->
+            <div class="dad-icons-transition">
+                <i class="fas fa-hat-cowboy" title="Pembawa cerita"></i>
+                <i class="fas fa-shoe-prints" title="Pengembara"></i>
+                <i class="fas fa-fish" title="Ahli mancing"></i>
+                <i class="fas fa-tools" title="Tukang serba bisa"></i>
+                <i class="fas fa-mug-hot" title="Pecinta kopi"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4️⃣ PHOTO BOOTH - MESIN FOTOSTRIP -->
+    <div id="photoboothPage" class="page">
+        <div class="photobox-container">
+            <!-- Header dengan kontrol -->
+            <div class="photobox-header-controls">
+                <button id="backToTransition" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Kembali</span>
+                </button>
+                <button id="musicTogglePhotobooth" class="music-btn">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+            </div>
+
+            <!-- Mesin Photobox -->
+            <div class="photobox-machine">
+                <!-- Bagian Atas Mesin -->
+                <div class="machine-top">
+                    <div class="machine-brand">
+                        <i class="fas fa-camera-retro"></i>
+                        <h1>DAD'S PHOTOBOX</h1>
+                        <i class="fas fa-camera-retro"></i>
+                    </div>
+                    <div class="machine-status">
+                        <div class="status-indicator">
+                            <span class="led red"></span>
+                            <span class="led yellow"></span>
+                            <span class="led green"></span>
+                        </div>
+                        <div class="status-display">
+                            <span id="statusText">READY FOR FUN TIMES</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Layar Display -->
+                <div class="machine-display">
+                    <div class="display-screen">
+                        <!-- Preview Area -->
+                        <div class="preview-area">
+                            <div id="photoPreview" class="photo-preview">
+                                <div class="preview-placeholder">
+                                    <i class="fas fa-smile"></i>
+                                    <p>Siap-siap senyum, Yah! 😄</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fotostrip Container -->
+                        <div class="photostrip-container">
+                            <div class="photostrip">
+                                <div class="strip-header">
+                                    <span>HAPPY DAD MOMENT</span>
+                                    <span class="strip-date">📅 TODAY'S MEMORIES</span>
+                                </div>
+                                <div class="frames-container" id="framesContainer">
+                                    <!-- Frames akan diisi oleh JavaScript -->
+                                    <div class="photo-frame" data-frame="1">
+                                        <div class="frame-number">1</div>
+                                        <div class="frame-status">READY</div>
+                                    </div>
+                                    <div class="photo-frame" data-frame="2">
+                                        <div class="frame-number">2</div>
+                                        <div class="frame-status">READY</div>
+                                    </div>
+                                    <div class="photo-frame" data-frame="3">
+                                        <div class="frame-number">3</div>
+                                        <div class="frame-status">READY</div>
+                                    </div>
+                                    <div class="photo-frame" data-frame="4">
+                                        <div class="frame-number">4</div>
+                                        <div class="frame-status">READY</div>
+                                    </div>
+                                    <div class="photo-frame" data-frame="5">
+                                        <div class="frame-number">5</div>
+                                        <div class="frame-status">READY</div>
+                                    </div>
+                                    <div class="photo-frame" data-frame="6">
+                                        <div class="frame-number">6</div>
+                                        <div class="frame-status">READY</div>
+                                    </div>
+                                    <div class="photo-frame" data-frame="7">
+                                        <div class="frame-number">7</div>
+                                        <div class="frame-status">READY</div>
+                                    </div>
+                                    <div class="photo-frame" data-frame="8">
+                                        <div class="frame-number">8</div>
+                                        <div class="frame-status">READY</div>
+                                    </div>
+                                    <div class="photo-frame" data-frame="9">
+                                        <div class="frame-number">9</div>
+                                        <div class="frame-status">READY</div>
+                                    </div>
+                                    <div class="photo-frame" data-frame="10">
+                                        <div class="frame-number">10</div>
+                                        <div class="frame-status">READY</div>
+                                    </div>
+                                </div>
+                                <div class="strip-footer">
+                                    <span>❤️ MADE WITH LOVE ❤️</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kontrol Mesin -->
+                <div class="machine-controls">
+                    <div class="control-panel">
+                        <button id="startSessionBtn" class="control-btn start-btn">
+                            <i class="fas fa-play-circle"></i>
+                            <span>START SESSION</span>
+                        </button>
+                        
+                        <div class="flash-indicator">
+                            <div class="flash-bulb"></div>
+                            <span>FLASH READY</span>
+                        </div>
+                        
+                        <button id="printBtn" class="control-btn print-btn" disabled>
+                            <i class="fas fa-print"></i>
+                            <span>PRINT STRIP</span>
+                        </button>
+                    </div>
+
+                    <div class="instruction-panel">
+                        <div class="instruction-text">
+                            <p><i class="fas fa-lightbulb"></i> Tekan START untuk mulai sesi foto!</p>
+                            <p><i class="fas fa-camera"></i> Setiap foto akan muncul otomatis</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info Mesin -->
+                <div class="machine-info">
+                    <div class="info-item">
+                        <i class="fas fa-bolt"></i>
+                        <span>POWER: ON</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-film"></i>
+                        <span>FILM: 10 SHOTS</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-qrcode"></i>
+                        <span>SCAN TO SAVE</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tombol Navigasi -->
+            <div class="photobox-navigation">
+                <button id="nextToVideo" class="next-section-btn">
+                    <span>Lanjut</span>
+                    <i class="fas fa-video"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5️⃣ VIDEO -->
+    <div id="videoPage" class="page">
+        <div class="video-container">
+            <!-- Header -->
+            <div class="video-header">
+                <div class="letter-controls">
+                    <button id="backToPhotobooth" class="back-btn">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <button id="musicToggleVideo" class="music-btn">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                </div>
+                
+                <h1 class="video-title">Video kecil untuk Ayah <span class="emoji">🎥</span></h1>
+                <p class="video-subtitle">Tonton sampai habis ya, Yah 😊</p>
+            </div>
+
+            <!-- Video Player - YOUTUBE IFRAME YANG DIPERBAIKI -->
+            <div class="video-player">
+                <div class="video-frame" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                    <iframe 
+                        id="birthdayVideo"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 15px;"
+                        src="https://www.youtube.com/embed/54fuGcJmmhg?enablejsapi=1&rel=0&modestbranding=1&showinfo=0&controls=1&autoplay=0" 
+                        title="Video Spesial untuk Ayah"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+
+            <!-- Deskripsi -->
+            <div class="video-description">
+                <p><i class="fas fa-info-circle"></i> Video ini dibuat dengan penuh cinta untuk mengingat momen-momen berharga bersama Ayah.</p>
+                <p class="hint"><i class="fas fa-heart"></i> Tekan tombol play di video untuk menonton</p>
+                <p class="hint" style="color: #FFD700; font-size: 14px; margin-top: 10px;">
+                    <i class="fas fa-exclamation-triangle"></i> 
+                    Jika video tidak muncul, klik link ini: 
+                    <a href="https://www.youtube.com/watch?v=54fuGcJmmhg" target="_blank" style="color: #FFD700; text-decoration: underline;">
+                        Tonton di YouTube
+                    </a>
+                </p>
+            </div>
+
+            <!-- Tombol Lanjut -->
+            <div class="video-footer">
+                <button id="nextToPrayer" class="next-section-btn">
+                    <span>Lanjut ke Doa</span>
+                    <i class="fas fa-hands-praying"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6️⃣ DOA -->
+    <div id="prayerPage" class="page">
+        <div class="prayer-container">
+            <!-- Header -->
+            <div class="prayer-header">
+                <div class="letter-controls">
+                    <button id="backToVideo" class="back-btn">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <button id="musicTogglePrayer" class="music-btn">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                </div>
+                
+                <h1 class="prayer-title">
+                    Doa untuk Ayah
+                </h1>
+                <p class="prayer-subtitle">Harapan dan doa tulus dari hati</p>
+            </div>
+
+            <!-- Card Doa -->
+            <div class="prayer-card">
+                <div class="prayer-content">
+                    <div class="prayer-text">
+                        <p class="prayer-line">Semoga Ayah selalu sehat,</p>
+                        <p class="prayer-line">rezekinya lancar, panjang umur,</p>
+                        <p class="prayer-line">dan hatinya selalu tenang.</p>
+                        <p class="prayer-line">Semoga dikelilingi kebahagiaan,</p>
+                        <p class="prayer-line">terhindar dari segala kesusahan.</p>
+                        <p class="prayer-line">Aamiin ya Rabb.</p>
+                    </div>
+                    
+                    <div class="prayer-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <div class="prayer-wishes">
+                    <div class="wish-item">
+                        <i class="fas fa-heart"></i>
+                        <p>Sehat selalu</p>
+                    </div>
+                    <div class="wish-item">
+                        <i class="fas fa-smile"></i>
+                        <p>Bahagia terus</p>
+                    </div>
+                    <div class="wish-item">
+                        <i class="fas fa-sun"></i>
+                        <p>Hari cerah</p>
+                    </div>
+                    <div class="wish-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <p>Dilindungi</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tombol Penutup -->
+            <div class="prayer-footer">
+                <button id="nextToClosing" class="next-section-btn">
+                    <span>Lihat Penutup</span>
+                    <i class="fas fa-heart"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7️⃣ PENUTUP -->
+    <div id="closingPage" class="page">
+        <div class="closing-container">
+            <!-- Konten Penutup -->
+            <div class="closing-content">
+                <h1 class="closing-title">Terima kasih, Yah ❤️</h1>
+                
+                <div class="closing-message">
+                    <p><i class="fas fa-heart"></i> Dari anak yang selalu bangga punya Ayah.</p>
+                    <p><i class="fas fa-heart"></i> Yang selalu kagum sama kekuatan Ayah.</p>
+                    <p><i class="fas fa-heart"></i> Dan yang selalu tersenyum ingat lelucon Ayah.</p>
+                </div>
+                
+                <div class="dad-final-icons">
+                    <i class="fas fa-crown" title="Raja Keluarga"></i>
+                    <i class="fas fa-shield-alt" title="Pelindung"></i>
+                    <i class="fas fa-laugh" title="Sumber Tawa"></i>
+                    <i class="fas fa-home" title="Rumah"></i>
+                    <i class="fas fa-star" title="Bintang"></i>
+                </div>
+                
+                <div class="closing-quote">
+                    <p>Bapak terbaik yang pernah ada</p>
+                    <p class="quote-author">— Dari anak yang selalu mencintai Ayah</p>
+                </div>
+            </div>
+
+            <!-- Tombol Aksi -->
+            <div class="closing-actions">
+                <button id="restartBtn" class="action-btn restart">
+                    <i class="fas fa-redo"></i>
+                    <span>Ulangi dari awal</span>
+                </button>
+                
+                <button id="shareBtn" class="action-btn share">
+                    <i class="fas fa-share-alt"></i>
+                    <span>Bagikan ke Ayah</span>
+                </button>
+                
+                <button id="downloadBtn" class="action-btn download">
+                    <i class="fas fa-download"></i>
+                    <span>Simpan Kenangan</span>
+                </button>
+            </div>
+
+            <!-- Footer -->
+            <div class="closing-footer">
+                <p><i class="fas fa-copyright"></i> Happy Dad Moment - 2024</p>
+                <p class="footer-note">Dibuat dengan ❤️ oleh anakmu</p>
+                <div class="social-links">
+                    <button class="social-btn whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                    </button>
+                    <button class="social-btn telegram">
+                        <i class="fab fa-telegram"></i>
+                    </button>
+                    <button class="social-btn copy-link">
+                        <i class="fas fa-link"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p>Menyiapkan kejutan spesial untuk Ayah...</p>
+            <div class="loading-progress">
+                <div class="progress-fill"></div>
+            </div>
+            <p class="loading-percentage">0%</p>
+        </div>
+    </div>
+
+    <!-- Share Modal -->
+    <div id="shareModal" class="modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-share-alt"></i> Bagikan ke Ayah</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Kirim link ini ke Ayah via WhatsApp atau pesan:</p>
+                <div class="share-link">
+                    <input type="text" id="shareUrl" readonly value="">
+                    <button id="copyLinkBtn" class="copy-btn">
+                        <i class="fas fa-copy"></i>
+                        Salin
+                    </button>
+                </div>
+                <div class="share-buttons">
+                    <button id="shareWhatsApp" class="share-btn whatsapp">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </button>
+                    <button id="shareTelegram" class="share-btn telegram">
+                        <i class="fab fa-telegram"></i> Telegram
+                    </button>
+                </div>
+                <p class="share-hint"><i class="fas fa-lightbulb"></i> Ayah akan langsung bisa melihat hadiahnya!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="https://assets.mixkit.co/music/preview/mixkit-romantic-sunset-687.mp3" type="audio/mpeg">
+        Browser Anda tidak mendukung audio.
+    </audio>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast"></div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
