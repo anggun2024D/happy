@@ -1180,41 +1180,33 @@ body::before {
 
 /* ========== 4️⃣ PHOTO BOOTH ========== */
 .photobox-container {
-    margin-top: 20px;
-    max-width: 100%;
+    margin-top: 500px;
+    max-width: 900px;
     width: 100%;
-    padding: 15px;
+    padding: 20px;
     position: relative;
-    min-height: calc(100vh - 100px);
-    display: flex;
-    flex-direction: column;
 }
 
 .photobox-header-controls {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-    padding: 0 10px;
-    flex-wrap: wrap;
-    gap: 10px;
+    margin-bottom: 30px;
+    padding: 0 20px;
 }
 
-/* Mesin Photobox - Responsive */
+/* Mesin Photobox */
 .photobox-machine {
     background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-    border-radius: 15px;
-    padding: 20px 15px;
+    border-radius: 20px;
+    padding: 30px;
     box-shadow: 
-        0 20px 50px rgba(0, 0, 0, 0.4),
+        0 30px 80px rgba(0, 0, 0, 0.5),
         inset 0 1px 0 rgba(255, 255, 255, 0.1),
-        0 0 0 2px rgba(139, 15, 15, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+        0 0 0 4px rgba(139, 15, 15, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.1);
     position: relative;
     overflow: hidden;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
 }
 
 .photobox-machine::before {
@@ -1223,55 +1215,49 @@ body::before {
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
+    height: 5px;
     background: linear-gradient(90deg, 
         transparent 0%, 
         rgba(255, 255, 255, 0.3) 50%, 
         transparent 100%);
 }
 
-/* Bagian Atas Mesin - Responsive */
+/* Bagian Atas Mesin */
 .machine-top {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    text-align: center;
-    gap: 15px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
 }
 
 .machine-brand {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 15px;
     color: #FFD700;
     font-family: 'Courier New', monospace;
-    width: 100%;
 }
 
 .machine-brand h1 {
-    font-size: clamp(18px, 4vw, 24px);
+    font-size: 22px;
     font-weight: 700;
-    letter-spacing: 1.5px;
-    text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
     animation: neonGlow 2s ease-in-out infinite alternate;
-    line-height: 1.2;
-    margin: 0;
 }
 
 @keyframes neonGlow {
     from {
-        text-shadow: 0 0 8px rgba(255, 215, 0, 0.5),
-                     0 0 15px rgba(255, 215, 0, 0.3),
-                     0 0 20px rgba(255, 215, 0, 0.2);
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.5),
+                     0 0 20px rgba(255, 215, 0, 0.3),
+                     0 0 30px rgba(255, 215, 0, 0.2);
     }
     to {
-        text-shadow: 0 0 12px rgba(255, 215, 0, 0.7),
-                     0 0 20px rgba(255, 215, 0, 0.5),
-                     0 0 25px rgba(255, 215, 0, 0.3);
+        text-shadow: 0 0 15px rgba(255, 215, 0, 0.7),
+                     0 0 25px rgba(255, 215, 0, 0.5),
+                     0 0 35px rgba(255, 215, 0, 0.3);
     }
 }
 
@@ -1279,38 +1265,36 @@ body::before {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
-    width: 100%;
+    gap: 10px;
 }
 
 .status-indicator {
     display: flex;
-    gap: 6px;
-    justify-content: center;
+    gap: 8px;
 }
 
 .led {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     animation: ledPulse 2s infinite;
 }
 
 .led.red {
     background: #ff4444;
-    box-shadow: 0 0 6px #ff4444;
+    box-shadow: 0 0 8px #ff4444;
     animation-delay: 0s;
 }
 
 .led.yellow {
     background: #ffcc00;
-    box-shadow: 0 0 6px #ffcc00;
+    box-shadow: 0 0 8px #ffcc00;
     animation-delay: 0.5s;
 }
 
 .led.green {
     background: #44ff44;
-    box-shadow: 0 0 6px #44ff44;
+    box-shadow: 0 0 8px #44ff44;
     animation-delay: 1s;
 }
 
@@ -1327,60 +1311,52 @@ body::before {
     background: #000;
     color: #9bbc0f;
     font-family: 'Courier New', monospace;
-    padding: 6px 12px;
-    border-radius: 4px;
-    font-size: clamp(10px, 2vw, 12px);
-    letter-spacing: 0.8px;
-    border: 1px solid #9bbc0f;
-    width: 100%;
-    max-width: 200px;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    border: 2px solid #9bbc0f;
+    min-width: 180px;
     text-align: center;
-    text-shadow: 0 0 4px #9bbc0f;
-    box-sizing: border-box;
+    text-shadow: 0 0 5px #9bbc0f;
 }
 
-/* Layar Display - Responsive */
+/* Layar Display */
 .machine-display {
     background: #1a1a2e;
-    border-radius: 12px;
-    padding: 15px;
-    margin-bottom: 20px;
-    border: 2px solid #333;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 30px;
+    border: 3px solid #333;
     box-shadow: 
-        inset 0 0 20px rgba(0, 0, 0, 0.7),
-        0 3px 10px rgba(0, 0, 0, 0.4);
-    flex: 1;
-    min-height: 400px;
-    display: flex;
-    flex-direction: column;
+        inset 0 0 30px rgba(0, 0, 0, 0.8),
+        0 5px 15px rgba(0, 0, 0, 0.5);
 }
 
 .display-screen {
     background: #0f3460;
-    border-radius: 8px;
-    padding: 12px;
-    min-height: 300px;
+    border-radius: 10px;
+    padding: 15px;
+    min-height: 350px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    flex: 1;
+    gap: 15px;
 }
 
-/* Preview Area - Responsive */
+/* Preview Area */
 .preview-area {
     flex: 1;
     background: #000;
-    border-radius: 6px;
-    border: 1px solid #444;
+    border-radius: 8px;
+    border: 2px solid #444;
     overflow: hidden;
     position: relative;
-    min-height: 150px;
 }
 
 .photo-preview {
     width: 100%;
     height: 100%;
-    min-height: 150px;
+    min-height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1390,84 +1366,71 @@ body::before {
 .preview-placeholder {
     text-align: center;
     color: #9bbc0f;
-    padding: 15px;
 }
 
 .preview-placeholder i {
-    font-size: clamp(32px, 8vw, 48px);
-    margin-bottom: 10px;
+    font-size: 48px;
+    margin-bottom: 15px;
     color: #FFD700;
     animation: bounce 2s infinite;
 }
 
 .preview-placeholder p {
-    font-size: clamp(14px, 3vw, 16px);
+    font-size: 18px;
     font-family: 'Courier New', monospace;
-    margin: 0;
-    line-height: 1.4;
 }
 
-/* Fotostrip Container - Responsive */
+/* Fotostrip Container */
 .photostrip-container {
     flex: 2;
     background: #000;
-    border-radius: 6px;
-    border: 1px solid #444;
-    padding: 12px;
+    border-radius: 8px;
+    border: 2px solid #444;
+    padding: 15px;
     overflow: hidden;
-    min-height: 250px;
-    display: flex;
-    flex-direction: column;
 }
 
 .photostrip {
     background: #ffffff;
-    border-radius: 6px;
-    border: 2px solid #333;
+    border-radius: 8px;
+    border: 3px solid #333;
     overflow: hidden;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     position: relative;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
 }
 
 .strip-header {
     background: linear-gradient(90deg, #8B0F0F, #c0392b);
     color: white;
-    padding: 8px 12px;
+    padding: 12px 20px;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    gap: 5px;
     font-family: 'Courier New', monospace;
     font-weight: bold;
-    font-size: clamp(10px, 2.5vw, 12px);
-    border-bottom: 1px solid #333;
-    text-align: center;
+    font-size: 14px;
+    border-bottom: 2px solid #333;
 }
 
 .strip-date {
-    font-size: clamp(9px, 2vw, 11px);
+    font-size: 12px;
     color: #FFD700;
-    font-weight: normal;
 }
 
-/* Frames Container - Responsive Grid */
+/* Frames Container */
 .frames-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    padding: 15px;
-    min-height: 200px;
-    flex: 1;
+    gap: 15px;
+    padding: 20px;
+    min-height: 250px;
 }
 
 .photo-frame {
     background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
-    border: 2px solid #333;
-    border-radius: 6px;
-    height: clamp(120px, 25vw, 150px);
+    border: 3px solid #333;
+    border-radius: 8px;
+    height: 150px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1476,12 +1439,11 @@ body::before {
     overflow: hidden;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
-    min-height: 100px;
 }
 
 .photo-frame:hover {
     transform: scale(1.02);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .photo-frame.filled {
@@ -1491,31 +1453,29 @@ body::before {
 
 .frame-number {
     position: absolute;
-    top: 5px;
-    left: 5px;
+    top: 8px;
+    left: 8px;
     background: #8B0F0F;
     color: white;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: clamp(10px, 2vw, 11px);
+    font-size: 12px;
     font-weight: bold;
-    z-index: 2;
 }
 
 .frame-status {
     color: #333;
     font-family: 'Courier New', monospace;
-    font-size: clamp(12px, 2.5vw, 13px);
+    font-size: 14px;
     font-weight: bold;
-    text-align: center;
-    padding: 10px;
 }
 
 .photo-frame.filled .frame-status {
+    color: #8B0F0F;
     display: none;
 }
 
@@ -1524,7 +1484,7 @@ body::before {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 4px;
+    border-radius: 5px;
     transition: transform 0.3s ease;
 }
 
@@ -1535,87 +1495,81 @@ body::before {
     right: 0;
     background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
     color: white;
-    padding: 5px 8px;
-    font-size: clamp(9px, 2vw, 10px);
+    padding: 8px;
+    font-size: 11px;
     text-align: center;
     font-weight: bold;
-    border-radius: 0 0 4px 4px;
-    z-index: 2;
+    border-radius: 0 0 5px 5px;
 }
 
 .strip-footer {
     background: linear-gradient(90deg, #333, #555);
     color: #FFD700;
-    padding: 8px 12px;
+    padding: 10px 20px;
     text-align: center;
     font-family: 'Courier New', monospace;
-    font-size: clamp(10px, 2vw, 11px);
+    font-size: 12px;
     font-weight: bold;
-    border-top: 1px solid #333;
-    letter-spacing: 0.8px;
+    border-top: 2px solid #333;
+    letter-spacing: 1px;
 }
 
-/* Kontrol Mesin - Responsive */
+/* Kontrol Mesin */
 .machine-controls {
     background: rgba(0, 0, 0, 0.3);
-    border-radius: 12px;
-    padding: 15px;
-    margin-bottom: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
 .control-panel {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    gap: 15px;
-    margin-bottom: 15px;
-    padding-bottom: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .control-btn {
-    padding: clamp(12px, 3vw, 15px) clamp(20px, 5vw, 30px);
+    padding: 15px 30px;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     font-family: 'Courier New', monospace;
     font-weight: bold;
-    font-size: clamp(14px, 3vw, 16px);
+    font-size: 16px;
     cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 8px;
+    gap: 10px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     text-transform: uppercase;
-    letter-spacing: 0.8px;
-    width: 100%;
-    max-width: 300px;
-    box-sizing: border-box;
+    letter-spacing: 1px;
 }
 
 .control-btn.start-btn {
     background: linear-gradient(135deg, #27ae60, #229954);
     color: white;
-    box-shadow: 0 3px 10px rgba(39, 174, 96, 0.4);
+    box-shadow: 0 5px 15px rgba(39, 174, 96, 0.4);
 }
 
 .control-btn.start-btn:hover:not(:disabled) {
     background: linear-gradient(135deg, #229954, #1e8449);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(39, 174, 96, 0.6);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(39, 174, 96, 0.6);
 }
 
 .control-btn.print-btn {
     background: linear-gradient(135deg, #3498db, #2980b9);
     color: white;
-    box-shadow: 0 3px 10px rgba(52, 152, 219, 0.4);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
 }
 
 .control-btn.print-btn:hover:not(:disabled) {
     background: linear-gradient(135deg, #2980b9, #21618c);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.6);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(52, 152, 219, 0.6);
 }
 
 .control-btn:disabled {
@@ -1624,99 +1578,92 @@ body::before {
     cursor: not-allowed;
     transform: none !important;
     box-shadow: none !important;
-    opacity: 0.6;
 }
 
 .flash-indicator {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
 }
 
 .flash-bulb {
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     background: #f39c12;
     border-radius: 50%;
-    box-shadow: 0 0 15px #f39c12;
+    box-shadow: 0 0 20px #f39c12;
     animation: flashReady 1.5s infinite alternate;
 }
 
 @keyframes flashReady {
     0% {
         opacity: 0.3;
-        box-shadow: 0 0 8px #f39c12;
+        box-shadow: 0 0 10px #f39c12;
     }
     100% {
         opacity: 1;
-        box-shadow: 0 0 20px #f39c12;
+        box-shadow: 0 0 30px #f39c12;
     }
 }
 
 .flash-indicator span {
     color: #f39c12;
-    font-size: clamp(10px, 2vw, 12px);
+    font-size: 12px;
     font-family: 'Courier New', monospace;
     font-weight: bold;
 }
 
 .instruction-panel {
     background: rgba(0, 0, 0, 0.5);
-    border-radius: 6px;
-    padding: 12px;
-    border-left: 3px solid #9bbc0f;
-    margin-top: 10px;
+    border-radius: 8px;
+    padding: 15px;
+    border-left: 4px solid #9bbc0f;
 }
 
 .instruction-text {
     color: #9bbc0f;
-    font-size: clamp(12px, 2.5vw, 14px);
-    line-height: 1.5;
-    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
 }
 
 .instruction-text i {
-    margin-right: 8px;
+    margin-right: 10px;
     color: #FFD700;
-    font-size: clamp(14px, 3vw, 16px);
 }
 
-/* Info Mesin - Responsive */
+/* Info Mesin */
 .machine-info {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    justify-content: space-around;
     background: rgba(0, 0, 0, 0.3);
-    border-radius: 8px;
-    padding: 12px;
+    border-radius: 10px;
+    padding: 15px;
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .info-item {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     color: #9bbc0f;
     font-family: 'Courier New', monospace;
-    font-size: clamp(12px, 2.5vw, 14px);
-    justify-content: center;
+    font-size: 14px;
 }
 
 .info-item i {
     color: #FFD700;
-    font-size: clamp(14px, 3vw, 16px);
-    flex-shrink: 0;
+    font-size: 16px;
 }
 
 /* Navigation untuk Photobox */
 .photobox-navigation {
-    margin-top: 20px;
+    margin-top: 40px;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 20px;
 }
 
 /* Animasi Flash */
@@ -1746,7 +1693,7 @@ body::before {
 /* Efek Cetakan */
 @keyframes printEffect {
     0% {
-        transform: translateY(15px);
+        transform: translateY(20px);
         opacity: 0;
     }
     100% {
@@ -1756,256 +1703,7 @@ body::before {
 }
 
 .printing .photo-frame.filled {
-    animation: printEffect 0.4s ease-out;
-}
-
-/* ========== RESPONSIVE PHOTOBOX BREAKPOINTS ========== */
-
-/* Extra Small Mobile (320px-480px) */
-@media (max-width: 480px) {
-    .photobox-container {
-        margin-top: 10px;
-        padding: 10px;
-    }
-    
-    .photobox-machine {
-        padding: 15px 10px;
-        border-radius: 12px;
-    }
-    
-    .machine-top {
-        margin-bottom: 15px;
-        gap: 10px;
-    }
-    
-    .machine-brand h1 {
-        font-size: 16px;
-        letter-spacing: 1px;
-    }
-    
-    .status-display {
-        font-size: 10px;
-        padding: 5px 10px;
-        max-width: 160px;
-    }
-    
-    .machine-display {
-        padding: 10px;
-        border-radius: 10px;
-        min-height: 350px;
-    }
-    
-    .display-screen {
-        padding: 10px;
-        min-height: 280px;
-        gap: 10px;
-    }
-    
-    .frames-container {
-        grid-template-columns: 1fr;
-        gap: 8px;
-        padding: 10px;
-    }
-    
-    .photo-frame {
-        height: 100px;
-    }
-    
-    .control-btn {
-        padding: 10px 15px;
-        font-size: 14px;
-        max-width: 100%;
-    }
-    
-    .machine-info {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    .info-item {
-        flex: 1;
-        min-width: 120px;
-        justify-content: flex-start;
-    }
-}
-
-/* Small Mobile Landscape (481px-768px) */
-@media (min-width: 481px) and (max-width: 768px) and (orientation: landscape) {
-    .photobox-container {
-        margin-top: 5px;
-    }
-    
-    .photobox-machine {
-        padding: 15px;
-    }
-    
-    .machine-top {
-        flex-direction: row;
-        justify-content: space-between;
-        text-align: left;
-    }
-    
-    .machine-brand {
-        flex-direction: row;
-        width: auto;
-    }
-    
-    .display-screen {
-        flex-direction: row;
-        min-height: 200px;
-    }
-    
-    .preview-area {
-        flex: 1;
-        min-height: 180px;
-    }
-    
-    .photostrip-container {
-        flex: 1;
-        min-height: 180px;
-    }
-    
-    .frames-container {
-        grid-template-columns: repeat(2, 1fr);
-        min-height: 150px;
-    }
-    
-    .photo-frame {
-        height: 80px;
-    }
-}
-
-/* Tablet Portrait (481px-768px) */
-@media (min-width: 481px) and (max-width: 768px) and (orientation: portrait) {
-    .photobox-container {
-        margin-top: 15px;
-    }
-    
-    .photobox-machine {
-        padding: 20px;
-    }
-    
-    .machine-top {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
-    
-    .machine-brand {
-        flex-direction: row;
-        width: auto;
-    }
-    
-    .machine-status {
-        align-items: flex-end;
-        width: auto;
-    }
-    
-    .display-screen {
-        min-height: 350px;
-    }
-    
-    .frames-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .photo-frame {
-        height: 130px;
-    }
-    
-    .machine-info {
-        flex-direction: row;
-        justify-content: space-around;
-    }
-}
-
-/* Desktop (769px+) */
-@media (min-width: 769px) {
-    .photobox-container {
-        margin-top: 20px;
-        padding: 30px;
-    }
-    
-    .photobox-machine {
-        padding: 30px;
-        border-radius: 20px;
-    }
-    
-    .machine-top {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
-    
-    .machine-brand {
-        flex-direction: row;
-        width: auto;
-    }
-    
-    .machine-status {
-        align-items: flex-end;
-        width: auto;
-    }
-    
-    .display-screen {
-        flex-direction: row;
-        min-height: 400px;
-    }
-    
-    .frames-container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-        padding: 25px;
-    }
-    
-    .photo-frame {
-        height: 180px;
-    }
-    
-    .control-panel {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-    
-    .control-btn {
-        width: auto;
-        max-width: none;
-    }
-    
-    .machine-info {
-        flex-direction: row;
-        justify-content: space-around;
-    }
-}
-
-/* Touch Device Optimizations */
-@media (hover: none) and (pointer: coarse) {
-    .photo-frame {
-        cursor: pointer;
-        -webkit-tap-highlight-color: rgba(139, 15, 15, 0.1);
-    }
-    
-    .photo-frame:hover {
-        transform: none;
-    }
-    
-    .control-btn:hover:not(:disabled) {
-        transform: none;
-    }
-    
-    .control-btn:active:not(:disabled) {
-        transform: scale(0.95) !important;
-    }
-}
-
-/* Safe Area Insets untuk Notched Phones */
-@supports (padding: max(0px)) {
-    .photobox-container {
-        padding-left: max(10px, env(safe-area-inset-left));
-        padding-right: max(10px, env(safe-area-inset-right));
-        padding-bottom: max(15px, env(safe-area-inset-bottom));
-    }
+    animation: printEffect 0.5s ease-out;
 }
 
 /* ========== 5️⃣ VIDEO ========== */
@@ -2927,7 +2625,6 @@ body::before {
     .next-section-btn,
     .transition-btn,
     .action-btn,
-    .back-btn,
     .video-control-btn,
     .control-btn {
         width: 100% !important;
@@ -3227,7 +2924,6 @@ body::before {
     .next-section-btn,
     .transition-btn,
     .action-btn,
-    .back-btn,
     .video-control-btn,
     .control-btn {
         width: 100% !important;
